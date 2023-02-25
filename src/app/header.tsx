@@ -1,9 +1,11 @@
 import Brand from "./brand";
 import Nav from "./nav";
 
+import styles from "./header.module.scss";
+
 function header() {
   return (
-    <header>
+    <header className={styles.header}>
       <Brand />
       <Nav />
     </header>

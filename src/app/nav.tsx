@@ -1,6 +1,7 @@
+import styles from "./header.module.scss";
 function Nav() {
   return (
-    <div>
+    <nav className={styles.nav}>
       <ul>
         <li>tr</li>
         <li>dsfg</li>
@@ -8,7 +9,7 @@ function Nav() {
         <li>dsgfs</li>
         <li>dsgf</li>
       </ul>
-    </div>
+    </nav>
   );
 }
 

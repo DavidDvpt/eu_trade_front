@@ -1,5 +1,6 @@
+import Footer from "./footer";
+import "./globals.scss";
 import Header from "./header";
-import styles from "./layout.module.scss";
 
 export default function RootLayout({
   children,
@@ -13,10 +14,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={styles.body}>
+      <body>
         <>
           <Header />
-          {children}
+          <main>{children}</main>
+          <Footer />
         </>
       </body>
     </html>

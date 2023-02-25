@@ -1,5 +1,3 @@
-import styles from "./home.module.css";
-
 export default function Home() {
-  return <main className={styles.main}>plop</main>;
+  return <div>plop</div>;
 }

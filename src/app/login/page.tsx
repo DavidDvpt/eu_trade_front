@@ -1,27 +1,23 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import FormInput from "@/components/form/FormInput";
+import { useForm } from "react-hook-form";
 import styles from "./login.module.scss";
 
-type LoginType = {
+export type LoginInputs = {
   pseudo: string;
   password: string;
 };
 
 function Login() {
-  const [credentials, setCredentials] = useState<LoginType>({
-    pseudo: "",
-    password: "",
-  });
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name as keyof LoginType;
-    const value = e.target.value;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<LoginInputs>();
 
-    setCredentials({ ...credentials, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("coucou je valide", credentials);
+  const onSubmit = (values: LoginInputs) => {
+    console.log(watch());
   };
 
   return (
@@ -30,26 +26,19 @@ function Login() {
 
       <h3>Connexion requise</h3>
 
-      <form action="" onSubmit={handleSubmit}>
-        <fieldset className={styles.fieldSet}>
-          <label htmlFor="pseudo">Pseudo : </label>
-          <input
-            name="pseudo"
-            type="txt"
-            value={credentials.pseudo}
-            onChange={handleChange}
-          />
-        </fieldset>
-
-        <fieldset className={styles.fieldSet}>
-          <label htmlFor="password">Mot de passe : </label>
-          <input
-            name="password"
-            type="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </fieldset>
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          register={register}
+          name={"pseudo"}
+          label="Pseudo :"
+          fieldType="email"
+        />
+        <FormInput
+          register={register}
+          name={"password"}
+          label="Mot de passe :"
+          fieldType="password"
+        />
 
         <button type="submit">Se connecter</button>
       </form>

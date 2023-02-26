@@ -1,0 +1,3 @@
+interface AuthState {
+  isLogged: boolean;
+}

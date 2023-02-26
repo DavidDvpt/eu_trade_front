@@ -1,0 +1,36 @@
+@mixin flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-center-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin button-base {
+  font-family: Courgette;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 3px black;
+  background-color: $button-valid-color;
+  color: white;
+  font-size: 1.05em;
+
+  &:hover {
+    font-weight: 600;
+  }
+  &:active {
+    box-shadow: 0 0 5px black;
+  }
+}

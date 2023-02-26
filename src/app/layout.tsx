@@ -1,12 +1,12 @@
-import Footer from "./footer";
-import "./globals.scss";
-import Header from "./header";
+import ReduxProvider from "@/redux/reduxProvider";
+import "../scss/globals.scss";
+import AuthCheck from "./authCheck";
 
-export default function RootLayout({
-  children,
-}: {
+interface IRootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: IRootLayoutProps) {
   return (
     <html lang="fr">
       {/*
@@ -15,11 +15,11 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </>
+        <ReduxProvider>
+          <AuthCheck>
+            <div>plop</div>
+          </AuthCheck>
+        </ReduxProvider>
       </body>
     </html>
   );

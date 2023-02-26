@@ -1,0 +1,51 @@
+@import "../../scss/main";
+
+.login {
+  @include flex-column-center-center;
+  margin-top: 100px;
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 150px;
+  }
+
+  h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  form {
+    @include flex-column-center-center;
+    fieldset {
+      @include flex-between-center;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 330px;
+      padding: 5px;
+      margin: 5px;
+
+      input {
+        height: 30px;
+        width: 200px;
+        padding: 0 5px;
+        border-radius: 5px;
+        border: 1px solid grey;
+      }
+    }
+
+    button {
+      @include button-base;
+      height: 40px;
+      width: 150px;
+      justify-self: center;
+      margin-top: 20px;
+
+      &:hover {
+        font-weight: 600;
+      }
+      &:active {
+        box-shadow: 0 0 5px black;
+      }
+    }
+  }
+}

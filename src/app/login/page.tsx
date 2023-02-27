@@ -1,5 +1,7 @@
 "use client";
+
 import FormInput from "@/components/form/FormInput";
+import axiosInstance from "@/features/axios/AxiosPublicInstance";
 import { useForm } from "react-hook-form";
 import styles from "./login.module.scss";
 
@@ -16,8 +18,12 @@ function Login() {
     formState: { errors },
   } = useForm<LoginInputs>();
 
-  const onSubmit = (values: LoginInputs) => {
-    console.log(watch());
+  const onSubmit = async (values: LoginInputs) => {
+    const result = await axiosInstance().post(
+      "http://localhost:8000/api/v1/login",
+      values
+    );
+    console.log(result);
   };
 
   return (
@@ -29,8 +35,8 @@ function Login() {
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           register={register}
-          name={"pseudo"}
-          label="Pseudo :"
+          name={"email"}
+          label="Email :"
           fieldType="email"
         />
         <FormInput

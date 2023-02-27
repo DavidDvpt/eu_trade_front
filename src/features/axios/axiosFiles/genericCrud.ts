@@ -1,9 +1,9 @@
-import { axiosTokenInstance } from '../AxiosProtectedInstance';
-import axiosInstance from '../AxiosPublicInstance';
-import { InternalError } from './axiosUtils';
-import { createRequestQuery } from './sagaCommon';
+import { axiosTokenInstance } from "../AxiosProtectedInstance";
+import axiosInstance from "../AxiosPublicInstance";
+import { InternalError } from "./axiosUtils";
+import { createRequestQuery } from "./sagaCommon";
 
-export const fetchDatas = (endpoint: string, params?: QueryParams) => {
+export const fetchDatas = (endpoint: string, params?: any) => {
   return new Promise<any>((resolve, reject) => {
     try {
       // const query = params ? createRequestQuery(params) : '';
@@ -22,16 +22,16 @@ export const fetchDatas = (endpoint: string, params?: QueryParams) => {
           return reject(InternalError(error));
         });
     } catch (error) {
-      return reject({ status: 500, message: 'fetchDatas error' });
+      return reject({ status: 500, message: "fetchDatas error" });
     }
   });
 };
 
 // get one
-export const fetchDataById = (idIri: string, params?: QueryParams) => {
+export const fetchDataById = (idIri: string, params?: any) => {
   return new Promise((resolve, reject) => {
     try {
-      const query = params ? createRequestQuery(params) : '';
+      const query = params ? createRequestQuery(params) : "";
 
       axiosTokenInstance()
         .get(`${idIri}${query}`)
@@ -49,7 +49,7 @@ export const fetchDataById = (idIri: string, params?: QueryParams) => {
     } catch (error: any) {
       return reject({
         status: 500,
-        message: 'fetchDatasById error',
+        message: "fetchDatasById error",
         error: { ...error },
       });
     }
@@ -57,17 +57,11 @@ export const fetchDataById = (idIri: string, params?: QueryParams) => {
 };
 
 // create entity
-export const postEntity = ({
-  endpoint,
-  body,
-  params = null,
-  timeout = 60000,
-}: IPostEntity) => {
+export const postEntity = ({ endpoint, body, params }: PostEntity) => {
   return new Promise((resolve, reject) => {
     try {
-      const query = params ? createRequestQuery(params) : '';
       axiosTokenInstance()
-        .post(`${endpoint}${query}`, body, { timeout })
+        .post(endpoint, body, { params })
         .then(
           (response) => {
             return resolve(response.data);
@@ -82,14 +76,20 @@ export const postEntity = ({
     } catch (error: any) {
       return reject({
         status: 500,
-        message: 'postEntity error',
+        message: "postEntity error",
         error: { ...error },
       });
     }
   });
 };
 
-export const postEntityNoToken = ({ endpoint, body }: IPostEntity) => {
+export const postEntityNoToken = ({
+  endpoint,
+  body,
+}: {
+  endpoint: string;
+  body: { [x: string]: any }[];
+}) => {
   return new Promise((resolve, reject) => {
     try {
       axiosInstance()
@@ -108,7 +108,7 @@ export const postEntityNoToken = ({ endpoint, body }: IPostEntity) => {
     } catch (error: any) {
       return reject({
         status: 500,
-        message: 'postEntityNoToken error',
+        message: "postEntityNoToken error",
         error: { ...error },
       });
     }
@@ -116,10 +116,10 @@ export const postEntityNoToken = ({ endpoint, body }: IPostEntity) => {
 };
 
 // update entity
-export const updateEntity = ({ idIri, body, params }: IUpdateEntity) => {
+export const updateEntity = ({ idIri, body, params }: UpdateEntity) => {
   return new Promise((resolve, reject) => {
     try {
-      const query = params ? createRequestQuery(params) : '';
+      const query = params ? createRequestQuery(params) : "";
 
       axiosTokenInstance()
         .put(`${idIri}${query}`, body)
@@ -135,7 +135,7 @@ export const updateEntity = ({ idIri, body, params }: IUpdateEntity) => {
     } catch (error: any) {
       return reject({
         status: 500,
-        message: 'updateEntity error',
+        message: "updateEntity error",
         error: { ...error },
       });
     }
@@ -160,7 +160,7 @@ export const deleteEntity = (idIri: string) => {
     } catch (error: any) {
       return reject({
         status: 500,
-        message: 'deleteEntity error',
+        message: "deleteEntity error",
         error: { ...error },
       });
     }

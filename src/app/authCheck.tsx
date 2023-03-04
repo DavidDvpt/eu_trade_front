@@ -12,6 +12,7 @@ interface IAuthCheckProps {
 
 function AuthCheck({ children }: IAuthCheckProps) {
   const { isLogged } = useAppSelector(getAuthState);
+
   return (
     <>
       {isLogged ? (

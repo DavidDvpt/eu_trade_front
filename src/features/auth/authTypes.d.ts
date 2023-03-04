@@ -1,4 +1,4 @@
 type AuthState = {
   isLogged: boolean;
-  token: null;
+  token: ApiType<string | null>;
 };

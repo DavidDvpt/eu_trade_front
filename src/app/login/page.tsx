@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import styles from "./login.module.scss";
 
 export type LoginInputs = {
-  pseudo: string;
+  email: string;
   password: string;
 };
 

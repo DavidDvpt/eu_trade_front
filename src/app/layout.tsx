@@ -1,6 +1,6 @@
 import ReduxProvider from "@/redux/reduxProvider";
 import "../scss/globals.scss";
-import AuthCheck from "./AuthCheck";
+import AuthCheck from "./_components/rootLayout/AuthCheck";
 
 interface IRootLayoutProps {
   children: React.ReactNode;

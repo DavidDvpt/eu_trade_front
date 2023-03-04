@@ -1,0 +1,10 @@
+@import "../scss/main";
+
+.page {
+  @include flex-center-center;
+
+  .homeLeftBloc {
+  }
+  .homeRightBloc {
+  }
+}

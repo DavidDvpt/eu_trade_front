@@ -1,27 +1,27 @@
 "use client";
 
 import FormInput from "@/components/form/FormInput";
-import { loginThunk } from "@/features/auth/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import styles from "./login.module.scss";
+import { loginFormSchema } from "./utils";
 
-export type LoginInputs = {
-  email: string;
-  password: string;
-};
+import { loginThunk } from "@/features/auth/authThunk";
+import styles from "./login.module.scss";
 
 function Login() {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
-  } = useForm<LoginInputs>();
+    formState: { errors, isDirty, isValid },
+  } = useForm<LoginInputs>({ resolver: yupResolver(loginFormSchema) });
   const dispatch = useAppDispatch();
 
   const onSubmit = async (values: LoginInputs) => {
-    dispatch(loginThunk(values));
+    if (isValid) {
+      dispatch(loginThunk(values));
+    }
   };
 
   return (
@@ -36,12 +36,14 @@ function Login() {
           name={"email"}
           label="Email :"
           fieldType="email"
+          error={errors.email ?? null}
         />
         <FormInput
           register={register}
           name={"password"}
           label="Mot de passe :"
           fieldType="password"
+          error={errors.password ?? null}
         />
 
         <button type="submit">Se connecter</button>

@@ -14,22 +14,6 @@
 
   form {
     @include flex-column-center-center;
-    fieldset {
-      @include flex-between-center;
-      border: 1px solid black;
-      border-radius: 5px;
-      width: 330px;
-      padding: 5px;
-      margin: 5px;
-
-      input {
-        height: 30px;
-        width: 200px;
-        padding: 0 5px;
-        border-radius: 5px;
-        border: 1px solid grey;
-      }
-    }
 
     button {
       @include button-base;

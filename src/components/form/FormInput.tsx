@@ -1,4 +1,4 @@
-import { UseFormRegister } from "react-hook-form";
+import { FieldError, UseFormRegister } from "react-hook-form";
 import styles from "./formElements.module.scss";
 interface IFormInputProps {
   register: UseFormRegister<any>;
@@ -6,6 +6,7 @@ interface IFormInputProps {
   name: string;
   className?: string;
   fieldType: string;
+  error: FieldError | null;
 }
 
 function FormInput({
@@ -14,11 +15,19 @@ function FormInput({
   name,
   className = "",
   fieldType,
+  error,
 }: IFormInputProps) {
   return (
-    <fieldset className={`${className} ${styles.input} ${styles.fieldSet}`}>
-      <label htmlFor={name}>{label}</label>
-      <input type={fieldType} {...register(name)} />
+    <fieldset
+      className={`${className} ${styles.inputForm} ${styles.fieldSet} ${
+        error ? styles.fieldError : ""
+      }`}
+    >
+      <div className={styles.inputLabel}>
+        <label htmlFor={name}>{label}</label>
+        <input {...register(name)} />
+      </div>
+      <p>{error?.message}</p>
     </fieldset>
   );
 }

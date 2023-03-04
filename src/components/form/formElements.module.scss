@@ -1,20 +1,50 @@
 @import "../../scss/main";
 
-.input {
+.inputForm {
   &.fieldSet {
-    @include flex-between-center;
     border: 1px solid black;
     border-radius: 5px;
-    width: 330px;
     padding: 5px;
     margin: 5px;
+    width: 330px;
 
-    input {
-      height: 30px;
-      width: 200px;
-      padding: 0 5px;
-      border-radius: 5px;
-      border: 1px solid grey;
+    p {
+      display: none;
+      font-size: 0.8em;
+      margin-top: 3px;
+      font-style: italic;
+      color: $error;
+    }
+
+    .inputLabel {
+      @include flex-between-center;
+      input {
+        height: 30px;
+        width: 200px;
+        padding: 0 5px;
+        border-radius: 5px;
+        background-color: $form-element-bg;
+        outline: none;
+        border: 1px solid $form-element-border;
+
+        &:focus {
+          border: 2px solid $form-element-border-focus;
+          background-color: $form-element-bg-focus;
+        }
+      }
+    }
+
+    &.fieldError {
+      border-color: $form-element-border-error;
+
+      input {
+        background-color: $form-element-bg-error;
+        border-color: $form-element-border-error;
+      }
+
+      p {
+        display: block;
+      }
     }
   }
 }

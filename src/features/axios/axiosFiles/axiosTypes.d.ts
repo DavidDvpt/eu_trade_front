@@ -1,3 +1,4 @@
+type APIError = { status: number; message: string; error?: any };
 interface PostEntity {
   endpoint: string;
   body: { [x: string]: any }[];

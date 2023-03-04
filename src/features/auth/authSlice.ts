@@ -3,12 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: AuthState = {
   isLogged: false,
+  token: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: () => initialState,
+  },
+  // extraReducers: (builder) => {
+  //   builder.addCase();
+  // },
 });
 
 export default authSlice.reducer;

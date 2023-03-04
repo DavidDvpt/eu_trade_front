@@ -1,7 +1,8 @@
 "use client";
 
 import FormInput from "@/components/form/FormInput";
-import axiosInstance from "@/features/axios/AxiosPublicInstance";
+import { loginThunk } from "@/features/auth/authThunk";
+import { useAppDispatch } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
 import styles from "./login.module.scss";
 
@@ -17,13 +18,10 @@ function Login() {
     watch,
     formState: { errors },
   } = useForm<LoginInputs>();
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (values: LoginInputs) => {
-    const result = await axiosInstance().post(
-      "http://localhost:8000/api/v1/login",
-      values
-    );
-    console.log(result);
+    dispatch(loginThunk(values));
   };
 
   return (

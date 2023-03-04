@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { setPublicResponseInterceptor } from './axiosFiles/axiosUtils';
+import axios from "axios";
+import { setPublicResponseInterceptor } from "./axiosFiles/axiosUtils";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function axiosInstance() {
   const request = axios.create({

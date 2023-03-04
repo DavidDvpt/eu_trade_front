@@ -1,15 +1,22 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-
+import axios, { AxiosInstance, AxiosResponse } from "axios";
+const API_URL = process.env.API_URL;
 export const InternalError = (error: any): APIError => {
   return {
-    message: 'Erreur durant le requetage',
+    message: "Erreur durant le requetage",
     status: 500,
     error: { ...error },
   };
 };
 
+export const MissingParamsError = (): APIError => {
+  return {
+    message: "one or more params missing",
+    status: 400,
+  };
+};
+
 export const timeoutError = (error: any): APIError => {
-  return { message: 'timeout', status: 500, error: { ...error } };
+  return { message: "timeout", status: 500, error: { ...error } };
 };
 
 export const error504Traitment = async (config: any) => {
@@ -48,5 +55,8 @@ export const onRejectedPublicResponse = (error: any) => {
 };
 
 export const setPublicResponseInterceptor = (request: AxiosInstance) => {
-  request.interceptors.response.use(onFullfilledRequest, onRejectedPublicResponse);
+  request.interceptors.response.use(
+    onFullfilledRequest,
+    onRejectedPublicResponse
+  );
 };

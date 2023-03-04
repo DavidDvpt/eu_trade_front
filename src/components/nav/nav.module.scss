@@ -1,0 +1,29 @@
+@import "../../scss/main";
+
+.navElement {
+  ul {
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      li {
+        width: 100px;
+        text-align: center;
+        cursor: pointer;
+        line-height: 50px;
+        border-bottom: 2px solid $grey;
+
+        &:hover {
+          border-bottom: 2px solid $primary-color;
+          background-color: $bg-active-color;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import ReduxProvider from "@/redux/reduxProvider";
 import "../scss/globals.scss";
-import AuthCheck from "./authCheck";
+import AuthCheck from "./AuthCheck";
 
 interface IRootLayoutProps {
   children: React.ReactNode;
@@ -16,9 +16,7 @@ export default function RootLayout({ children }: IRootLayoutProps) {
       <head />
       <body>
         <ReduxProvider>
-          <AuthCheck>
-            <div>plop</div>
-          </AuthCheck>
+          <AuthCheck>{children}</AuthCheck>
         </ReduxProvider>
       </body>
     </html>

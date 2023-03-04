@@ -1,13 +1,15 @@
-import Brand from "./brand";
-import Nav from "./nav";
+import Nav from "../nav";
+import Brand from "./Brand";
 
+import HeaderAuth from "@/features/auth/headerAuth";
 import styles from "./header.module.scss";
 
 function header() {
   return (
     <header className={styles.header}>
       <Brand />
-      <Nav />
+      <Nav className={styles.nav} />
+      <HeaderAuth />
     </header>
   );
 }

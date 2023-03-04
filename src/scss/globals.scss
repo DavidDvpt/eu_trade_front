@@ -133,6 +133,10 @@ table {
   border-spacing: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -156,9 +160,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Ubuntu, sans-serif;
-  header {
-    height: 100px;
-  }
 
   main {
     flex-grow: 1;

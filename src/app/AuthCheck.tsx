@@ -2,8 +2,8 @@
 
 import { getAuthState } from "@/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
-import Footer from "./footer";
-import Header from "./header";
+import Footer from "../components/footer/Footer";
+import Header from "../components/header/Header";
 import Login from "./login/page";
 
 interface IAuthCheckProps {

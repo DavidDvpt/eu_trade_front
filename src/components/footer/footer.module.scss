@@ -1,0 +1,8 @@
+@import "../../scss/main";
+
+.footer {
+  @include flex-center-center;
+  font-family: "Fredoka One", Courgette;
+  font-size: 2.5em;
+  background-color: $grey;
+}

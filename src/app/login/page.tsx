@@ -4,7 +4,7 @@ import FormInput from "@/components/form/FormInput";
 import { useAppDispatch } from "@/redux/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { loginFormSchema } from "./utils";
+import { loginFormDefaultValues, loginFormSchema } from "./utils";
 
 import { loginThunk } from "@/features/auth/authThunk";
 import styles from "./login.module.scss";
@@ -15,7 +15,10 @@ function Login() {
     handleSubmit,
     watch,
     formState: { errors, isDirty, isValid },
-  } = useForm<LoginInputs>({ resolver: yupResolver(loginFormSchema) });
+  } = useForm<LoginInputs>({
+    resolver: yupResolver(loginFormSchema),
+    defaultValues: loginFormDefaultValues,
+  });
   const dispatch = useAppDispatch();
 
   const onSubmit = async (values: LoginInputs) => {
